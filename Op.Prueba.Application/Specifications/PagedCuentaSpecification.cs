@@ -7,6 +7,11 @@ namespace OP.Prueba.Application.Specifications
     {
         public PagedCuentaSpecification(int? pageSize, int? pageNumber, string? numeroCuenta, int? tipoCuentaId, int? estadoId)
         {
+            Query
+                .Include(m => m.Cliente)
+                .Include(m => m.TipoCuenta)
+                .Include(m => m.Estado);
+
             if (!string.IsNullOrWhiteSpace(numeroCuenta))
                 Query.Where(c => c.NumeroCuenta.Contains(numeroCuenta));
 

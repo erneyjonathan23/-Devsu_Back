@@ -7,6 +7,10 @@ namespace OP.Prueba.Application.Specifications
     {
         public PagedMovimientoSpecification(int? pageSize, int? pageNumber, DateTime? fechaDesde, DateTime? fechaHasta, int? tipoMovimientoId)
         {
+            Query
+                .Include(m => m.Cuenta)
+                .Include(m => m.TipoMovimiento);
+
             if (fechaDesde.HasValue)
                 Query.Where(m => m.Fecha >= fechaDesde.Value);
 
